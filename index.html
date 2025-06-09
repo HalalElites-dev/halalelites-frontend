@@ -1,181 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HalalElites.dev</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6e62ff;
-      --secondary: #9369d2;
-      --accent: #3aa0d8;
-      --text: #2d2d2d;
-      --bg-light: #f8f9ff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      color: var(--text);
-      text-align: center;
-      min-height: 100vh;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(145deg, #f0f4ff, #faf8ff);
-      animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card {
-      background: white;
-      padding: 3rem 2rem;
-      border-radius: 20px;
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-      max-width: 720px;
-      width: 100%;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    img {
-      width: 130px;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 3rem;
-      background: linear-gradient(to right, var(--accent), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 620px;
-      margin: 0.75rem auto;
-      color: #333;
-    }
-
-    .notice {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #555;
-      font-style: italic;
-    }
-
-    form {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    input[type="email"] {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      width: 250px;
-    }
-
-    .cta-button {
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 18px rgba(110, 98, 255, 0.3);
-    }
-
-    .cta-button:hover {
-      background: var(--secondary);
-      transform: scale(1.05);
-    }
-
-    .thank-you {
-      display: none;
-      margin-top: 1.5rem;
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.25rem;
-      animation: popIn 0.5s ease forwards;
-    }
-
-    .error-message {
-      display: none;
-      margin-top: 1rem;
-      color: #e63946;
-      font-weight: 500;
-    }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <img src="assets/halaleliteslogo.png" alt="HalalElites Logo">
-    <h1>🚀Coming Soon: HalalElites</h1>
-    <p>A professional, value-driven brand created to empower Muslim developers through ethical tech education, real-world digital tools, and purpose-led client services.</p>
-    <p>Founded by a passionate Muslim university student excited to give back in what he’s great at - building useful things with code and helping others do the same.</p>
-    <p class="notice">✨ This is where code meets conviction - and excellence meets intention. Stay tuned. We’re building something that matters.</p>
-    <form id="signup-form" action="https://formspree.io/f/mzzgbzdq" method="POST" target="hidden_iframe">
-      <input type="email" name="email" id="email-input" placeholder="Enter your email" required />
-      <button class="cta-button" type="submit">Join the Journey</button>
-    </form>
-    <div class="error-message" id="error-message">⚠️ You've already signed up with this email!</div>
-    <div class="thank-you" id="thank-you-message">🎉 Thank you! You're officially part of the HalalElites journey!</div>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-  </div>
-  <script>
-    const form = document.getElementById('signup-form');
-    const emailInput = document.getElementById('email-input');
-    const errorMessage = document.getElementById('error-message');
-
-    form.addEventListener('submit', function (e) {
-      const email = emailInput.value;
-
-      if (localStorage.getItem("submittedEmail") === email) {
-        e.preventDefault();
-        errorMessage.style.display = 'block';
-        return false;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HalalElites.dev</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #6e62ff;
+        --secondary: #9369d2;
+        --accent: #3aa0d8;
+        --text: #2d2d2d;
+        --bg-light: #f8f9ff;
       }
 
-      localStorage.setItem("submittedEmail", email);
-      errorMessage.style.display = 'none';
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-      setTimeout(() => {
-        form.style.display = 'none';
-        document.getElementById('thank-you-message').style.display = 'block';
-      }, 500);
-    });
-  </script>
-</body>
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-light);
+        color: var(--text);
+        text-align: center;
+        min-height: 100vh;
+        padding: 4rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(145deg, #f0f4ff, #faf8ff);
+        animation: fadeIn 1.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: white;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+        max-width: 720px;
+        width: 100%;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      img {
+        width: 130px;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        max-width: 620px;
+        margin: 0.75rem auto;
+        color: #333;
+      }
+
+      .notice {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: #555;
+        font-style: italic;
+      }
+
+      form {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      input[type="email"] {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 250px;
+      }
+
+      .cta-button {
+        background: var(--primary);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 18px rgba(110, 98, 255, 0.3);
+      }
+
+      .cta-button:hover {
+        background: var(--secondary);
+        transform: scale(1.05);
+      }
+
+      .thank-you {
+        display: none;
+        margin-top: 1.5rem;
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 1.25rem;
+        animation: popIn 0.5s ease forwards;
+      }
+
+      .error-message {
+        display: none;
+        margin-top: 1rem;
+        color: #e63946;
+        font-weight: 500;
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img src="assets/halaleliteslogo.png" alt="HalalElites Logo" />
+      <h1>🚀Coming Soon: HalalElites.dev</h1>
+      <p>
+        A professional, value-driven brand created to empower Muslim developers
+        through ethical tech education, real-world digital tools, and
+        purpose-led client services.
+      </p>
+      <p>
+        Founded by a passionate Muslim university student excited to give back
+        in what he’s great at - building useful things with code and helping
+        others do the same.
+      </p>
+      <p class="notice">
+        ✨ This is where code meets conviction - and excellence meets intention.
+        Stay tuned. We’re building something that matters.
+      </p>
+      <form
+        id="signup-form"
+        action="https://formspree.io/f/mzzgbzdq"
+        method="POST"
+        target="hidden_iframe"
+      >
+        <input
+          type="email"
+          name="email"
+          id="email-input"
+          placeholder="Enter your email"
+          required
+        />
+        <button class="cta-button" type="submit">Join the Journey</button>
+      </form>
+      <div class="error-message" id="error-message">
+        ⚠️ You've already signed up with this email!
+      </div>
+      <div class="thank-you" id="thank-you-message">
+        🎉 Thank you! You're officially part of the HalalElites journey!
+      </div>
+      <iframe name="hidden_iframe" style="display: none"></iframe>
+    </div>
+    <script>
+      const form = document.getElementById("signup-form");
+      const emailInput = document.getElementById("email-input");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", function (e) {
+        const email = emailInput.value;
+
+        if (localStorage.getItem("submittedEmail") === email) {
+          e.preventDefault();
+          errorMessage.style.display = "block";
+          return false;
+        }
+
+        localStorage.setItem("submittedEmail", email);
+        errorMessage.style.display = "none";
+
+        setTimeout(() => {
+          form.style.display = "none";
+          document.getElementById("thank-you-message").style.display = "block";
+        }, 500);
+      });
+    </script>
+  </body>
 </html>
